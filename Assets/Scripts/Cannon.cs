@@ -7,6 +7,7 @@ public class Cannon : MonoBehaviour {
     public bool canFire = true;
 
     public CannonUI powerui;
+    public List<Planet> allPlanets;
 
     public float powerMin = 5;
     public float powerMax = 100;
@@ -17,10 +18,11 @@ public class Cannon : MonoBehaviour {
 
     void Start()
     {
+        allPlanets = new List<Planet>(FindObjectsOfType<Planet>());
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
 	    if (Input.GetKey(KeyCode.A))
         {
@@ -46,6 +48,9 @@ public class Cannon : MonoBehaviour {
             {
                 Meteor shotTemp = Instantiate(shot, transform.position, transform.rotation) as Meteor;
                 shotTemp.cannon = this;
+                shotTemp.rigidbody.velocity = transform.up * 0.1f;
+                shotTemp.allPlanets = allPlanets;
+
                 canFire = false;
             }
         }
