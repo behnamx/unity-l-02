@@ -48,7 +48,7 @@ public class Cannon : MonoBehaviour {
             {
                 Meteor shotTemp = Instantiate(shot, transform.position, transform.rotation) as Meteor;
                 shotTemp.cannon = this;
-                shotTemp.rigidbody.velocity = transform.up * 0.1f;
+                shotTemp.rigidbody.velocity = transform.up * power * 0.1f;
                 shotTemp.allPlanets = allPlanets;
 
                 canFire = false;
